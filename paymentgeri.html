@@ -1,162 +1,69 @@
 <!DOCTYPE html>
-<html lang="id">
+<html>
 <head>
-  <!-- ... (bagian head tetap sama) ... -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Payment Gerizuza</title>
   <style>
-    /* Notifikasi Biaya Admin Premium */
-    .fee-notification {
-      background: linear-gradient(135deg, rgba(255, 107, 107, 0.2) 0%, rgba(255, 59, 59, 0.25) 100%);
-      border-left: 4px solid #ff3b3b;
-      padding: 14px;
-      border-radius: 10px;
-      margin: 18px 0;
-      display: flex;
-      align-items: center;
-      animation: shakeWarning 0.5s ease-in-out, pulseWarning 2s infinite 0.5s;
-      backdrop-filter: blur(4px);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .fee-notification::before {
-      content: "";
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, #ff3b3b, #ff8a8a);
-      animation: progressBar 3s linear infinite;
-    }
-
-    @keyframes shakeWarning {
-      0%, 100% { transform: translateX(0); }
-      20%, 60% { transform: translateX(-5px); }
-      40%, 80% { transform: translateX(5px); }
-    }
-
-    @keyframes pulseWarning {
-      0% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
-      70% { box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
-      100% { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0); }
-    }
-
-    @keyframes progressBar {
-      0% { width: 0%; opacity: 1; }
-      100% { width: 100%; opacity: 0; }
-    }
-
-    .fee-notification i {
-      color: #ff3b3b;
-      margin-right: 12px;
-      font-size: 1.4rem;
-      min-width: 24px;
+    body {
+      font-family: 'Arial', sans-serif;
+      max-width: 500px;
+      margin: 0 auto;
+      padding: 20px;
+      background: #f5f7fa;
       text-align: center;
-      animation: bounce 2s infinite;
     }
-
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-5px); }
+    .payment-box {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 15px 0;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
     }
-
-    .fee-notification p {
-      margin: 0;
-      color: #ffebee;
-      font-size: 0.95rem;
-      line-height: 1.5;
-    }
-
-    .fee-notification strong {
-      color: #ffdddd;
-      font-weight: 600;
-      text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-    }
-
-    .fee-notification a {
-      color: #00f7ff;
-      text-decoration: none;
+    .warning {
+      color: red;
+      background: #fff0f0;
+      padding: 10px;
+      border-radius: 5px;
       font-weight: bold;
     }
-
-    /* Tombol Konfirmasi */
-    .confirm-checkbox {
-      display: flex;
-      align-items: center;
-      margin-top: 12px;
+    .copy-btn {
+      background: #4b6cb7;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
       cursor: pointer;
+      margin-top: 10px;
     }
-
-    .confirm-checkbox input {
-      margin-right: 8px;
-      accent-color: #00f7ff;
-    }
-
-    .confirm-checkbox label {
-      font-size: 0.85rem;
-      color: #b0e0e6;
+    img {
+      max-width: 100%;
+      border: 1px solid #eee;
     }
   </style>
 </head>
 <body>
 
-<!-- ... (bagian canvas dan welcome page tetap sama) ... -->
-
-<div id="payment-page" class="container" style="display:none;">
-  <!-- ... (bagian pilihan metode tetap sama) ... -->
-
-  <!-- QRIS Section dengan Notifikasi Premium -->
-  <div id="qris-section" class="">
-    <h3>Scan QRIS</h3>
-    
-    <!-- Notifikasi Biaya Admin Premium -->
-    <div class="fee-notification">
-      <i class="fas fa-hand-holding-usd"></i>
-      <div>
-        <p>
-          <strong>⚠️ PERHATIAN:</strong> Pembayaran via QRIS <u>selain DANA</u> akan dikenakan 
-          <strong>biaya admin Rp1.000</strong>. Pastikan nominal transfer sudah termasuk biaya ini.
-        </p>
-        <div class="confirm-checkbox">
-          <input type="checkbox" id="feeConfirm">
-          <label for="feeConfirm">Saya memahami dan menyetujui biaya tambahan</label>
-        </div>
-      </div>
-    </div>
-
-    <img id="qrisImage" src="https://i.ibb.co/39jt1jRJ/qris-gerizuza.jpg" 
-         alt="QRIS Gerizuza" width="250" 
-         onerror="showImageError()">
-    <br>
-    <button class="button" onclick="checkFeeConfirmation()">Download QRIS</button>
-    <p id="qrisError" style="color:#ff6b6b; display:none; margin-top:8px;">
-      QRIS gagal dimuat. <a href="https://ibb.co/39jt1jRJ" target="_blank">Klik di sini</a> untuk buka langsung.
-    </p>
+  <h1 style="color: #4b6cb7;">GERIZUZA PAYMENT</h1>
+  
+  <div class="payment-box">
+    <h2>QRIS</h2>
+    <img src="https://i.ibb.co/39jt1jRJ/qris-gerizuza.jpg" alt="QRIS">
+    <p class="warning">Biaya admin 1K untuk pembayaran non-DANA</p>
   </div>
 
-  <!-- ... (bagian dana dan gopay tetap sama) ... -->
-</div>
+  <div class="payment-box">
+    <h2>DANA / GOPAY</h2>
+    <p style="font-size: 20px; font-weight: bold;">088994321220</p>
+    <button class="copy-btn" onclick="copyNumber()">Salin Nomor</button>
+  </div>
 
-<script>
-  // Fungsi cek konfirmasi biaya
-  function checkFeeConfirmation() {
-    const isConfirmed = document.getElementById("feeConfirm").checked;
-    
-    if (!isConfirmed) {
-      alert("Harap centang konfirmasi biaya admin terlebih dahulu!");
-      document.getElementById("feeConfirm").focus();
-      return;
+  <script>
+    function copyNumber() {
+      navigator.clipboard.writeText("088994321220")
+        .then(() => alert("Nomor berhasil disalin!"))
+        .catch(() => alert("Gagal menyalin, silakan copy manual"));
     }
-    
-    downloadQRIS();
-  }
+  </script>
 
-  // Fungsi download QRIS (tetap sama)
-  async function downloadQRIS() {
-    // ... (kode download sebelumnya) ...
-  }
-
-  // ... (fungsi lainnya tetap sama) ...
-</script>
 </body>
 </html>
